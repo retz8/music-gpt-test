@@ -32,3 +32,26 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Folders Described
+
+# app
+All of the layouts and pages are included here.
+
+# app/api
+NextJS api routes, it calls backend logics to create and update pinecone index with custom dataset.
+
+# components
+React components
+
+# components/shared
+All of shared components
+
+# components/ui
+All of ui components including icons and fonts
+
+# documents
+Custom data is stored here.
+
+# service
+Backend logic, including creating index and LLM context injection
