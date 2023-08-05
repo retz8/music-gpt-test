@@ -1,8 +1,8 @@
-name: Dev Push - Test
+name: Main Pull Request - valid build check
 on:
-  push:
+  pull_request:
     branches:
-      - dev
+      - main
       
 permissions:
   contents: read
@@ -12,7 +12,7 @@ permissions:
   pull-requests: write
   
 jobs:
-  dev-test:
+  ready-to-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -22,6 +22,8 @@ jobs:
           node-version: 16
           cache: 'npm'
           cache-dependency-path: package-lock.json
-      - name: Install Packages
-        run: npm install
+      - name: npm install & build
+        run: |
+          npm install
+          npm run build
   

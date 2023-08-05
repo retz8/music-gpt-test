@@ -3,4 +3,4 @@
 2. fetching data example component 생성
 3. create layout
 4. sidebar
-5. body base ui  
+5. body base ui 
