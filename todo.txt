@@ -1,6 +1,0 @@
-230805
-1. README에 폴더들 모두 정의하기
-2. fetching data example component 생성
-3. create layout
-4. sidebar
-5. body base ui 
