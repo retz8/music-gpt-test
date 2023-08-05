@@ -35,23 +35,30 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Folders Described
 
-# app
+### app
+
 All of the layouts and pages are included here.
 
-# app/api
+### app/api
+
 NextJS api routes, it calls backend logics to create and update pinecone index with custom dataset.
 
-# components
+### components
+
 React components
 
-# components/shared
+### components/shared
+
 All of shared components
 
-# components/ui
+### components/ui
+
 All of ui components including icons and fonts
 
-# documents
+### documents
+
 Custom data is stored here.
 
-# service
+### service
+
 Backend logic, including creating index and LLM context injection
