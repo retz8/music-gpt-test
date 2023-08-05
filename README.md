@@ -62,3 +62,7 @@ Custom data is stored here.
 ### service
 
 Backend logic, including creating index and LLM context injection
+
+### utils
+
+Util functions, fonts, and etc
