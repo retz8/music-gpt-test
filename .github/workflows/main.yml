@@ -1,0 +1,29 @@
+name: Main Pull Request - valid build check
+on:
+  pull_request:
+    branches:
+      - main
+      
+permissions:
+  contents: read
+  pages: write
+  deployments: write
+  id-token: write
+  pull-requests: write
+  
+jobs:
+  ready-to-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setting node
+        uses: actions/setup-node@v3.5.1
+        with:
+          node-version: 16
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+      - name: npm install & build
+        run: |
+          npm install
+          npm run build
+  
