@@ -26,6 +26,7 @@ export default function RootLayout({
           </div>
         </header>
 
+        {/* 처음에는 w-80 넣기 */}
         <div className="h-screen hidden md:flex">
           <Sidebar />
         </div>
