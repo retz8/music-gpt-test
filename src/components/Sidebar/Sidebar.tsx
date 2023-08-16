@@ -16,13 +16,13 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`${isVisible ? "translate-x-0" : "-translate-x-64"} 
-      w-80 first-line:ease-in-out duration-300 
-      h-full flex flex-col border-r-2 
-    border-slate-400 z-50`}
+      className={`${isVisible ? "w-64" : "w-12"} 
+      ease-in-out duration-300 
+      h-full flex flex-col items-center border-r-2 
+    border-slate-400 z-50 overflow-hidden`}
     >
       {isVisible ? (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full w-full">
           <div className="p-2">
             <SidebarTop isVisible={isVisible} onClick={onClickVisibilityIcon} />
           </div>

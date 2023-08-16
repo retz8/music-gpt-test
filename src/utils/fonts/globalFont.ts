@@ -1,8 +1,8 @@
-// globalFont: Roboto Flex (Google Variable Fonts)
+// globalFont: Figtree (Google Variable Fonts)
 
-import { Roboto_Flex } from "next/font/google";
+import { Figtree } from "next/font/google";
 
-export const globalFont = Roboto_Flex({
+export const globalFont = Figtree({
   subsets: ["latin"],
   display: "swap",
 });

@@ -7,18 +7,18 @@ export default function UserInfo() {
   return (
     <div
       className="flex items-center justify-center px-4 py-2
-    border-2 border-slate-300 rounded-2xl shadow-lg"
+    border border-slate-200 rounded-2xl shadow-lg"
     >
-      <div className="flex w-12 h-12">
+      <div className="flex w-8 h-8">
         <Image
           className="object-cover rounded-full"
           src={GuestProfilePic}
-          width={500}
-          height={500}
+          width={800}
+          height={800}
           alt="User Profile Pic"
         />
       </div>
-      <p className="text-xl ml-4">Guest</p>
+      <p className="text-lg ml-4">Guest</p>
     </div>
   );
 }

@@ -12,9 +12,9 @@ type Props = {
 export default function SidebarTop({ isVisible, onClick }: Props) {
   return (
     <div className="flex justify-between items-center py-4 px-2">
-      <div className="flex justify-center">
+      <div className="flex justify-center items-center">
         <MusicIcon />
-        <p className="ml-3 font-semibold text-2xl">MusicGPT</p>
+        <p className="ml-3 font-semibold text-xl">MusicGPT</p>
       </div>
 
       {isVisible && (

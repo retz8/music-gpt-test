@@ -16,10 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={globalFont.className}>
-      <body
-        className="flex flex-col md:flex-row
-       min-h-screen"
-      >
+      <body className="flex flex-col md:flex-row">
         <header className="flex md:hidden sticky top-0 z-40">
           <div className="w-full mx-auto">
             <Header />
@@ -31,10 +28,8 @@ export default function RootLayout({
           <Sidebar />
         </div>
 
-        <main className="grow w-full h-full z-30">
-          <div className="flex w-full max-w-screen-xl mx-auto grow">
-            {children}
-          </div>
+        <main className="grow overflow-auto z-30">
+          <div className="h-full max-w-screen-xl mx-auto">{children}</div>
         </main>
       </body>
     </html>
