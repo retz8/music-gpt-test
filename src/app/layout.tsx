@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { globalFont } from "@/utils/fonts/globalFont";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Header from "@/components/Header/Header";
+import { ConversationProvider } from "@/contexts/ConversationProvider";
 
 export const metadata: Metadata = {
   title: "Music GPT",
@@ -28,9 +29,12 @@ export default function RootLayout({
           <Sidebar />
         </div>
 
-        <main className="grow overflow-auto z-30">
-          <div className="h-full max-w-screen-xl mx-auto">{children}</div>
-        </main>
+        <ConversationProvider>
+          {/* Now we can use useConversationContext here */}
+          <main className="grow overflow-auto z-30">
+            <div className="h-full mx-auto">{children}</div>
+          </main>
+        </ConversationProvider>
       </body>
     </html>
   );

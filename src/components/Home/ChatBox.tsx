@@ -3,29 +3,44 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
 import ChatBoxSubmitIcon from "../ui/ChatBoxSubmitIcon";
 
-export default function ChatBox() {
-  const [message, setMessage] = useState(""); // State to store the typed message
+type Props = {
+  message: string;
+  handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: () => void;
+  handleKeyPress: (e: KeyboardEvent<HTMLInputElement>) => void;
+};
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setMessage(e.target.value);
-  };
+// 처음엔 Props 추가하지말것
+export default function ChatBox({
+  message,
+  handleInputChange,
+  handleSubmit,
+  handleKeyPress,
+}: Props) {
+  // 이 부분 conversationAndChatbox로 옮기기
 
-  const handleSubmit = () => {
-    if (message.trim() !== "") {
-      // Handle submitting the message (you can implement this part)
-      console.log("Submitted:", message);
+  // const [message, setMessage] = useState(""); // State to store the typed message
 
-      // Clear the input field
-      setMessage("");
-    }
-  };
+  // const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   setMessage(e.target.value);
+  // };
 
-  // Enter Key Submit
-  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && message.trim() !== "") {
-      handleSubmit();
-    }
-  };
+  // const handleSubmit = () => {
+  //   if (message.trim() !== "") {
+  //     // Handle submitting the message (you can implement this part)
+  //     console.log("Submitted:", message);
+
+  //     // Clear the input field
+  //     setMessage("");
+  //   }
+  // };
+
+  // // Enter Key Submit
+  // const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+  //   if (e.key === "Enter" && message.trim() !== "") {
+  //     handleSubmit();
+  //   }
+  // };
 
   return (
     <div className="w-7/12 min-w-[300px] mx-auto p-4 border rounded-xl flex">
@@ -40,11 +55,11 @@ export default function ChatBox() {
       <button
         onClick={handleSubmit}
         className={`ml-3 ${
-          message.trim() === ""
+          message?.trim() === ""
             ? "text-gray-400 cursor-default"
             : "text-yellow-500 cursor-pointer"
         }`}
-        disabled={message.trim() === ""}
+        disabled={message?.trim() === ""}
       >
         <ChatBoxSubmitIcon />
       </button>
