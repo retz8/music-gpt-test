@@ -4,6 +4,7 @@ import ChatBox from "@/components/Home/ChatBox";
 import ConversationAndChatbox from "@/components/Home/ConversationAndChatbox";
 import ExamplesBox from "@/components/Home/ExamplesBox";
 import LimitationsBox from "@/components/Home/LimitationsBox";
+import TmpButton from "@/components/Home/TmpButton";
 import WelcomeSection from "@/components/Home/WelcomeSection";
 import React from "react";
 
@@ -37,6 +38,7 @@ import React from "react";
 
 // ----------------------------------------------------------------------
 // Chatbox Conversation UI를 만들땐 이 코드로
+
 export default async function HomePage() {
   return (
     <section
@@ -46,6 +48,7 @@ export default async function HomePage() {
       <div className="w-full max-w-screen-xl">
         <WelcomeSection />
       </div>
+      {/* <TmpButton /> */}
 
       {/* 스타일링 이전 */}
       {/* <div className="w-full grow bg-yellow-300">

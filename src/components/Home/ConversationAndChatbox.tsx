@@ -18,7 +18,8 @@ export default function ConversationAndChatbox() {
   const { isConversationStarted, setIsConversationStarted } =
     useConversationContext();
   const [message, setMessage] = useState<string>(""); // State to store the typed message
-
+  const [response, setResponse] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   // 맨 나중에 추가
   const [chatMessages, setChatMessages] = useState<SingleChatType[]>([]); // State to store the typed message
 
@@ -26,7 +27,27 @@ export default function ConversationAndChatbox() {
     setMessage(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const sendQuery = async () => {
+    if (!message) return;
+    setResponse("");
+    setLoading(true);
+    try {
+      const result = await fetch("/api/ask", {
+        method: "POST",
+        body: JSON.stringify(message),
+      });
+      const json = await result.json();
+      console.log(json);
+      setResponse(json.answer);
+      setLoading(false);
+      return json.answer;
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async () => {
     // add isConversationStarted logic
 
     if (message.trim() !== "") {
@@ -40,7 +61,9 @@ export default function ConversationAndChatbox() {
 
       // API call to receive response from LLM
       // For now, use a dummy response
-      const fakeResponse = "This is fake";
+      console.log("asking...");
+      // await sendQuery();
+      const fakeResponse = await sendQuery();
 
       const newChatMessage: SingleChatType = {
         user: message,
