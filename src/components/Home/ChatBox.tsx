@@ -17,31 +17,6 @@ export default function ChatBox({
   handleSubmit,
   handleKeyPress,
 }: Props) {
-  // 이 부분 conversationAndChatbox로 옮기기
-
-  // const [message, setMessage] = useState(""); // State to store the typed message
-
-  // const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   setMessage(e.target.value);
-  // };
-
-  // const handleSubmit = () => {
-  //   if (message.trim() !== "") {
-  //     // Handle submitting the message (you can implement this part)
-  //     console.log("Submitted:", message);
-
-  //     // Clear the input field
-  //     setMessage("");
-  //   }
-  // };
-
-  // // Enter Key Submit
-  // const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-  //   if (e.key === "Enter" && message.trim() !== "") {
-  //     handleSubmit();
-  //   }
-  // };
-
   return (
     <div className="w-7/12 min-w-[300px] mx-auto p-4 border rounded-xl flex">
       <input

@@ -29,6 +29,11 @@ export default function RootLayout({
           <Sidebar />
         </div>
 
+        {/* login 화면 추가 */}
+        {/* {
+          !session ! (<Login />) : () 
+        } */}
+
         <ConversationProvider>
           {/* Now we can use useConversationContext here */}
           <main className="grow overflow-auto z-30">

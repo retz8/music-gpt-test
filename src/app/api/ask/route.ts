@@ -10,6 +10,8 @@ import { indexConfig } from "@/configs";
 
 export async function POST(req: NextRequest) {
   const body = await req.json(); // body = query
+  const question: string = body.question;
+  const history: string[] = body.history;
   console.log(body);
   if (
     process.env.PINECONE_API_KEY === undefined ||
@@ -25,7 +27,12 @@ export async function POST(req: NextRequest) {
     environment: process.env.PINECONE_ENVIRONMENT,
   });
   const indexName = indexConfig.name;
-  const text = await queryPineconeAndQueryLLM({ client, indexName, body });
+  const text = await queryPineconeAndQueryLLM({
+    client,
+    indexName,
+    question,
+    history,
+  });
 
   return NextResponse.json({
     answer: text,

@@ -18,28 +18,33 @@ export default function ConversationAndChatbox() {
   const { isConversationStarted, setIsConversationStarted } =
     useConversationContext();
   const [message, setMessage] = useState<string>(""); // State to store the typed message
-  const [response, setResponse] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   // 맨 나중에 추가
   const [chatMessages, setChatMessages] = useState<SingleChatType[]>([]); // State to store the typed message
+
+  // For better UX, store chat histories with separate states.
+  const [userQueries, setUserQueries] = useState<string[]>([]);
+  const [aiResponses, setAiResponses] = useState<string[]>([]);
+
+  const [history, setHistory] = useState<SingleChatType[]>([]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMessage(e.target.value);
   };
 
   const sendQuery = async () => {
-    if (!message) return;
-    setResponse("");
+    if (!message) return "No Query Recieved";
     setLoading(true);
     try {
+      const history = [...userQueries];
+
       const result = await fetch("/api/ask", {
         method: "POST",
-        body: JSON.stringify(message),
+        body: JSON.stringify({ question: message, history: history }),
       });
       const json = await result.json();
-      console.log(json);
-      setResponse(json.answer);
       setLoading(false);
+
       return json.answer;
     } catch (error) {
       console.error(error);
@@ -48,8 +53,6 @@ export default function ConversationAndChatbox() {
   };
 
   const handleSubmit = async () => {
-    // add isConversationStarted logic
-
     if (message.trim() !== "") {
       // Handle submitting the message (you can implement this part)
       console.log("Submitted:", message);
@@ -59,18 +62,14 @@ export default function ConversationAndChatbox() {
         setIsConversationStarted(newIsConversationStarted);
       }
 
-      // API call to receive response from LLM
-      // For now, use a dummy response
+      setUserQueries([...userQueries, message]); // update user queries array with new query
+
       console.log("asking...");
       // await sendQuery();
-      const fakeResponse = await sendQuery();
+      const response = await sendQuery();
 
-      const newChatMessage: SingleChatType = {
-        user: message,
-        ai: fakeResponse,
-      };
-
-      setChatMessages([...chatMessages, newChatMessage]);
+      console.log("AI Response:", response);
+      setAiResponses([...aiResponses, response]); // update AI responses array with new response
 
       // Clear the input field
       setMessage("");
@@ -100,7 +99,16 @@ export default function ConversationAndChatbox() {
               className="max-w-screen-xl w-full mx-auto 
             h-[1500px] mb-10"
             >
-              <ChatList chatMessages={chatMessages} />
+              <ChatList
+                userQueries={userQueries}
+                aiResponses={aiResponses}
+                loading={loading}
+              />
+              {/* <ChatList
+                userMessage={message}
+                aiMessage={response}
+                loading={loading}
+              /> */}
             </div>
           </div>
         )}
@@ -117,3 +125,7 @@ export default function ConversationAndChatbox() {
     </div>
   );
 }
+
+// 유저가 채팅을 입력하면 바로 UI를 보여줘야함.
+// 유저의 메세지 + AI 로딩
+// query가 끝나면 AI 메세지를 보여줘야함.
